@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
         AssetImage('images/m2.jpg'),
         AssetImage('images/m1.jpeg'),
         AssetImage('images/w1.jpeg'),
-
+        AssetImage('images/w4.jpeg'),
 
       ],
       autoplay: false,
