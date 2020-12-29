@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
+
+
+//my own imports
+import 'package:gradproject/Components/horizontal_listview.dart';
+
 void main (){
   runApp(
     MaterialApp(
@@ -26,6 +31,9 @@ class HomePage extends StatelessWidget {
       autoplay: false,
       animationCurve: Curves.fastOutSlowIn,
       animationDuration: Duration(milliseconds: 1000),
+      dotSize: 6.0,
+      indicatorBgPadding:  8.0,
+
     ),
   );
 
@@ -107,8 +115,15 @@ Divider(),
 
       ),
       body: new ListView(children: [
-        image_carousel
-      ],),
+        image_carousel, //padding widget
+        new Padding(padding: const EdgeInsets.all(2.0),
+        child: new Text('Categories'),),
+
+        // Horizontal List view begind here
+        HorizontalList(),
+
+      ],
+      ),
     );
   }
 }
