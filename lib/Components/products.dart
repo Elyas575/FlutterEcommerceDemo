@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-
 class Products extends StatefulWidget {
   @override
   _ProductsState createState() => _ProductsState();
@@ -9,18 +7,16 @@ class Products extends StatefulWidget {
 
 class _ProductsState extends State<Products> {
   var product_list = [
-
-      {
-        "name": "product 1",
-        "picture": "images/products/blazer1.jpeg",
-        "price": 120,
-      },
-      {
-        "name": "product 2",
-        "picture": "images/products/blazer2.jpeg",
-        "price": 150,
-      },
-
+    {
+      "name": "product 1",
+      "picture": "images/products/blazer1.jpeg",
+      "price": 120,
+    },
+    {
+      "name": "product 2",
+      "picture": "images/products/blazer2.jpeg",
+      "price": 150,
+    },
   ];
 
   @override
@@ -30,11 +26,11 @@ class _ProductsState extends State<Products> {
         gridDelegate:
             new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemBuilder: (BuildContext context, int index) {
-    return Single_product(
-    product_name: product_list[index]['name'],
-    product_picture: product_list[index]['picture'],
-    product_price: product_list[index]['price']);
-    } );
+          return Single_product(
+              product_name: product_list[index]['name'],
+              product_picture: product_list[index]['picture'],
+              product_price: product_list[index]['price']);
+        });
   }
 }
 
@@ -52,19 +48,28 @@ class Single_product extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Hero(tag: product_name, child: Material(
-        child: InkWell(
-          onTap: (){},
-          child: GridTile(
-              footer: Container(color: Colors.white,
-              child: ListTile(
-                leading: Text(product_name, style: TextStyle(fontWeight: FontWeight.bold),),
-              ),
-              ) ,
-              child: Image.asset(product_picture,
-              fit: BoxFit.cover,)),
+      child: Hero(
+        tag: product_name,
+        child: Material(
+          child: InkWell(
+            onTap: () {},
+            child: GridTile(
+                footer: Container(
+                  color: Colors.white,
+                  child: ListTile(
+                    leading: Text(
+                      product_name,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+                child: Image.asset(
+                  product_picture,
+                  fit: BoxFit.cover,
+                )),
+          ),
         ),
-      ),),
+      ),
     );
   }
 }
