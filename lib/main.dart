@@ -134,6 +134,8 @@ class HomePage extends StatelessWidget {
             padding: const EdgeInsets.all(25.0),
             child: new Text('Recent products'),
           ),
+
+          // grid view
           Container(
             height: 320.0,
             child: Products(
