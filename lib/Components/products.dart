@@ -15,27 +15,27 @@ class _ProductsState extends State<Products> {
     {
       "name": "product 2",
       "picture": "images/w1.jpeg",
-      "price": 150,
+      "price": 40,
     },
     {
       "name": "product 3",
       "picture": "images/w3.jpeg",
-      "price": 150,
+      "price": 50,
     },
     {
       "name": "product 4",
       "picture": "images/w4.jpeg",
-      "price": 150,
+      "price": 60,
     },
     {
       "name": "product 5",
       "picture": "images/products/blazer2.jpeg",
-      "price": 150,
+      "price": 100,
     },
     {
       "name": "product 6",
       "picture": "images/products/dress1.jpeg",
-      "price": 150,
+      "price": 120,
     },
   ];
 
@@ -72,7 +72,8 @@ class Single_product extends StatelessWidget {
         tag: product_name,
         child: Material(
           child: InkWell(
-            onTap:()=> Navigator.of(context).push(new MaterialPageRoute(builder: (context) => new ProductDetails(
+            onTap:()=> Navigator.of(context).push(new MaterialPageRoute(
+                builder: (context) => new ProductDetails(
               // here we are passing the values of the product to the product details page
               product_detail_name: product_name,
               product_detail_new_price: product_price,
@@ -81,13 +82,11 @@ class Single_product extends StatelessWidget {
             child: GridTile(
                 footer: Container(
                   color: Colors.white70,
-                  child: ListTile(
-                    leading: Text(
-                      product_name,
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                  child: new Row(children: <Widget>[
+                    Expanded(child: Text(product_name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15.0,),),
                     ),
-                    title: Text("\$$product_price", style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w800), ),
-                  ),
+                    new Text("\$${product_price}", style: TextStyle(color: Colors.blueAccent, fontWeight: FontWeight.bold),)
+                  ],)
 
                 ),
                 child: Image.asset(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gradproject/pages/product_details.dart';
+import 'package:gradproject/main.dart';
 class ProductDetails extends StatefulWidget {
   final product_detail_name;
   final product_detail_new_price;
@@ -23,7 +24,9 @@ class _ProductDetailsState extends State<ProductDetails> {
       appBar:  new AppBar(
         elevation: 0.1,
         backgroundColor: Colors.blue,
-        title: Text('Garavoli'),
+        title: InkWell(
+            onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context)=> new HomePage()));},
+            child: Text('Garavoli')),
         actions: <Widget>[
           new IconButton(
               icon: Icon(
@@ -217,6 +220,15 @@ class _ProductDetailsState extends State<ProductDetails> {
               Padding(padding: EdgeInsets.all(5.0),
                 child: new Text("NEW"),)
             ],
+          ),
+          Divider(),
+          Padding(padding:const EdgeInsets.all(8.0),
+          child: new Text("Similar Products"),),
+
+          //Similar products section
+          Container(
+            height: 600.0,
+            child: Similar_products(),
           )
 
         ],
@@ -224,3 +236,91 @@ class _ProductDetailsState extends State<ProductDetails> {
     );
   }
 }
+
+class Similar_products extends StatefulWidget {
+  @override
+  _Similar_productsState createState() => _Similar_productsState();
+}
+
+class _Similar_productsState extends State<Similar_products> {
+  var product_list = [
+    {
+      "name": "product 1",
+      "picture": "images/products/blazer1.jpeg",
+      "price": 120,
+    },
+    {
+      "name": "product 2",
+      "picture": "images/w1.jpeg",
+      "price": 40,
+    },
+    {
+      "name": "product 3",
+      "picture": "images/w3.jpeg",
+      "price": 50,
+    },
+
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+        itemCount: product_list.length,
+        gridDelegate:
+        new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+        itemBuilder: (BuildContext context, int index) {
+          return Similar_Single_product(
+              product_name: product_list[index]['name'],
+              product_picture: product_list[index]['picture'],
+              product_price: product_list[index]['price']);
+        });
+  }
+  }
+
+class Similar_Single_product extends StatelessWidget {
+  final product_name;
+  final product_picture;
+  final product_price;
+
+  Similar_Single_product({
+    this.product_name,
+    this.product_picture,
+    this.product_price,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Hero(
+        tag: product_name,
+        child: Material(
+          child: InkWell(
+            onTap:()=> Navigator.of(context).push(new MaterialPageRoute(
+                builder: (context) => new ProductDetails(
+                  // here we are passing the values of the product to the product details page
+                  product_detail_name: product_name,
+                  product_detail_new_price: product_price,
+                  product_detail_picture: product_picture,
+                ) )),
+            child: GridTile(
+                footer: Container(
+                    color: Colors.white70,
+                    child: new Row(children: <Widget>[
+                      Expanded(child: Text(product_name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15.0,),),
+                      ),
+                      new Text("\$${product_price}", style: TextStyle(color: Colors.blueAccent, fontWeight: FontWeight.bold),)
+                    ],)
+
+                ),
+                child: Image.asset(
+                  product_picture,
+                  fit: BoxFit.cover,
+                )),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
