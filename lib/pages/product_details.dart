@@ -55,7 +55,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),),
                 title: new Row(
                   children: <Widget>[
-                    Expanded( child: new Text("\$${widget.product_detail_new_price}", style: TextStyle(color: Colors.blue),),
+                    Expanded( child: new Text("\$${widget.product_detail_new_price}", style: TextStyle(color: Colors.blueAccent),),
                     )
                   ],
                 ),
@@ -70,7 +70,25 @@ class _ProductDetailsState extends State<ProductDetails> {
             children: <Widget>[
               // ===============  the size button ===========================
               Expanded(
-                child: MaterialButton(onPressed: (){},
+                child: MaterialButton(onPressed: (){
+              showDialog(context: context,
+              builder: (context){
+                return new AlertDialog(
+                  title: new Text("Size ") ,
+                  content: new Text("Choose the size"),
+                  actions: <Widget>[
+                    new MaterialButton(onPressed: (){
+                      Navigator.of(context).pop(context);
+
+                    },
+
+                    child: new Text("close"),)
+                  ],
+                );
+
+              } );
+                },
+                  
                 color:Colors.white,
                 textColor: Colors.grey,
                   elevation: 0.3,
@@ -83,7 +101,24 @@ class _ProductDetailsState extends State<ProductDetails> {
                 ),
               ),
               Expanded(
-                child: MaterialButton(onPressed: (){},
+                child: MaterialButton(onPressed: (){
+                  showDialog(context: context,
+                      builder: (context){
+                        return new AlertDialog(
+                          title: new Text("color ") ,
+                          content: new Text("Choose the Color"),
+                          actions: <Widget>[
+                            new MaterialButton(onPressed: (){
+                              Navigator.of(context).pop(context);
+
+                            },
+
+                              child: new Text("close"),)
+                          ],
+                        );
+
+                      } );
+                },
                   color:Colors.white,
                   textColor: Colors.grey,
                   elevation: 0.3,
@@ -96,7 +131,24 @@ class _ProductDetailsState extends State<ProductDetails> {
                 ),
               ),
               Expanded(
-                child: MaterialButton(onPressed: (){},
+                child: MaterialButton(onPressed: (){
+                  showDialog(context: context,
+                      builder: (context){
+                        return new AlertDialog(
+                          title: new Text("quantity ") ,
+                          content: new Text("Choose the Quantity"),
+                          actions: <Widget>[
+                            new MaterialButton(onPressed: (){
+                              Navigator.of(context).pop(context);
+
+                            },
+
+                              child: new Text("close"),)
+                          ],
+                        );
+
+                      } );
+                },
                   color:Colors.white,
                   textColor: Colors.grey,
                   elevation: 0.3,
@@ -106,12 +158,67 @@ class _ProductDetailsState extends State<ProductDetails> {
                       Expanded(child: new Icon(Icons.arrow_drop_down)),
                     ],
                   ),
+
                 ),
               ),
 
 
             ],
+          ),
+          Row(
+            children: <Widget>[
+              // the second button
+
+              Expanded(
+                child: MaterialButton(onPressed: (){},
+                  color:Colors.blue,
+                  textColor: Colors.white,
+                  elevation: 0.3,
+                  child: new Text("Buy now"),
+                ),
+              ),
+              new IconButton(icon:Icon(Icons.add_shopping_cart), onPressed: (){},)
+
+
+
+            ],
+          ),
+          Divider(color: Colors.blue,),
+          new ListTile(
+
+            title: new Text("Product Details"),
+            subtitle: new Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+          ),
+          Divider(color: Colors.blue,),
+          new Row(
+            children: <Widget>[
+              Padding(padding: const EdgeInsets.fromLTRB(12.0, 4.0, 4.0, 4.0),
+              child: new Text("Product name", style: TextStyle(color: Colors.grey),),),
+              Padding(padding: EdgeInsets.all(5.0),
+              child: new Text(widget.product_detail_name),)
+            ],
+          ),
+
+          // REMEMber to add the product brand later
+          new Row(
+            children: <Widget>[
+              Padding(padding: const EdgeInsets.fromLTRB(12.0, 4.0, 4.0, 4.0),
+                child: new Text("Product brand", style: TextStyle(color: Colors.grey),),),
+              Padding(padding: EdgeInsets.all(5.0),
+                child: new Text("Brand A"),)
+            ],
+          ),
+
+          // REMEMber to add to our product condition later
+          new Row(
+            children: <Widget>[
+              Padding(padding: const EdgeInsets.fromLTRB(12.0, 4.0, 4.0, 4.0),
+                child: new Text("Product condition", style: TextStyle(color: Colors.grey),),),
+              Padding(padding: EdgeInsets.all(5.0),
+                child: new Text("NEW"),)
+            ],
           )
+
         ],
       ),
     );
